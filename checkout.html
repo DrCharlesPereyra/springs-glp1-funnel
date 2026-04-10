@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Plan — Springs Rejuvenation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="checkout-body">
+
+<header class="header header-simple">
+    <div class="container header-inner">
+        <a href="index.html" class="logo"><span class="logo-text">SPRINGS<span class="logo-accent">REJUVENATION</span></span></a>
+        <div class="secure-badge">🔒 256-bit SSL Encrypted</div>
+    </div>
+</header>
+
+<section class="checkout-section">
+    <div class="container">
+        <div class="checkout-layout">
+            <div class="checkout-main">
+                <h1>Choose your plan</h1>
+                <p class="checkout-sub">All plans include medication, doctor visit, free shipping, and 24/7 support.</p>
+
+                <!-- EDIT: Adjust pricing for each tier -->
+                <div class="plan-grid">
+                    <div class="plan-card" data-plan="monthly" onclick="selectPlan(this,'monthly',179)">
+                        <div class="plan-header"><h3>Monthly</h3><p class="plan-flexibility">Cancel anytime</p></div>
+                        <div class="plan-price"><span class="plan-amount">$179</span><span class="plan-period">/month</span></div>
+                        <ul class="plan-features">
+                            <li>✓ GLP-1 medication (4-week supply)</li>
+                            <li>✓ Provider consultation</li>
+                            <li>✓ Free priority shipping</li>
+                            <li>✓ 24/7 care team</li>
+                        </ul>
+                    </div>
+                    <div class="plan-card recommended" data-plan="quarterly" onclick="selectPlan(this,'quarterly',149)">
+                        <div class="plan-badge">BEST VALUE</div>
+                        <div class="plan-header"><h3>Quarterly</h3><p class="plan-flexibility">Save 17%</p></div>
+                        <div class="plan-price"><span class="plan-amount">$149</span><span class="plan-period">/month</span></div>
+                        <p class="plan-billed">Billed $447 every 3 months</p>
+                        <ul class="plan-features">
+                            <li>✓ Everything in Monthly</li>
+                            <li>✓ Priority doctor access</li>
+                            <li>✓ Nutrition coaching</li>
+                            <li>✓ Save $90 over 3 months</li>
+                        </ul>
+                    </div>
+                    <div class="plan-card" data-plan="biannual" onclick="selectPlan(this,'biannual',129)">
+                        <div class="plan-header"><h3>6-Month</h3><p class="plan-flexibility">Save 28%</p></div>
+                        <div class="plan-price"><span class="plan-amount">$129</span><span class="plan-period">/month</span></div>
+                        <p class="plan-billed">Billed $774 every 6 months</p>
+                        <ul class="plan-features">
+                            <li>✓ Everything in Quarterly</li>
+                            <li>✓ Dedicated care coordinator</li>
+                            <li>✓ Progress check-ins</li>
+                            <li>✓ Save $300 over 6 months</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Add-ons -->
+                <div class="addons-section">
+                    <h2>Enhance your results</h2>
+                    <div class="addon-grid">
+                        <label class="addon-card">
+                            <input type="checkbox" name="addon" value="b12" data-price="29" onchange="updateTotal()">
+                            <div class="addon-content"><h4>B12 Injection</h4><p>Boost energy and metabolism</p><span class="addon-price">+$29/mo</span></div>
+                        </label>
+                        <label class="addon-card">
+                            <input type="checkbox" name="addon" value="antinausea" data-price="19" onchange="updateTotal()">
+                            <div class="addon-content"><h4>Anti-Nausea Support</h4><p>Minimize side effects</p><span class="addon-price">+$19/mo</span></div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- EDIT: Replace with actual Stripe Elements -->
+                <div class="payment-section">
+                    <h2>Payment information</h2>
+                    <div class="payment-badges"><span class="pay-badge">💳 Visa</span><span class="pay-badge">💳 MC</span><span class="pay-badge">💳 Amex</span><span class="pay-badge">🏦 HSA/FSA</span></div>
+                    <form id="payment-form" class="payment-form">
+                        <div class="form-group"><label>Name on card</label><input type="text" placeholder="John Smith" required></div>
+                        <div class="form-group"><label>Card number</label><input type="text" id="card-number" placeholder="4242 4242 4242 4242" maxlength="19" required></div>
+                        <div class="form-row">
+                            <div class="form-group"><label>Expiry</label><input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5" required></div>
+                            <div class="form-group"><label>CVV</label><input type="text" placeholder="123" maxlength="4" required></div>
+                            <div class="form-group"><label>ZIP</label><input type="text" placeholder="33101" maxlength="5" required></div>
+                        </div>
+                        <div class="form-group"><label>Email</label><input type="email" placeholder="you@example.com" required></div>
+                        <div class="form-group"><label>Phone</label><input type="tel" placeholder="(305) 555-1234" required></div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-full">START MY TREATMENT — <span id="btn-price">$149</span></button>
+                        <div class="checkout-trust"><p>🔒 Secure & encrypted</p><p>💳 HSA/FSA accepted</p><p>↩️ Cancel anytime</p></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Order Summary Sidebar -->
+            <div class="checkout-sidebar">
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-line"><span>GLP-1 Program</span><span id="summary-plan">Quarterly</span></div>
+                    <div class="summary-line"><span>Medication + Visit</span><span id="summary-base">$149.00</span></div>
+                    <div class="summary-line" id="addon-line" style="display:none"><span>Add-ons</span><span id="summary-addons">$0</span></div>
+                    <div class="summary-line"><span>Shipping</span><span class="free-tag">FREE</span></div>
+                    <hr>
+                    <div class="summary-total"><span>Total today</span><span id="summary-total">$149.00</span></div>
+                    <p class="summary-note">Then <span id="summary-recurring">$149/month</span></p>
+                </div>
+                <div class="sidebar-trust">
+                    <h4>What's included:</h4>
+                    <ul><li>✓ Doctor-prescribed GLP-1 medication</li><li>✓ Provider consultation</li><li>✓ Free priority shipping</li><li>✓ 24/7 care team</li><li>✓ Patient portal</li><li>✓ Injection supplies</li></ul>
+                </div>
+                <div class="sidebar-guarantee"><p>🛡️ <strong>Springs Guarantee</strong> — Not satisfied? We'll make it right.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer footer-simple">
+    <div class="container">
+        <p class="footer-disclaimer-sm">*Individual results may vary. GLP-1 medications require a prescription. Consult your healthcare provider before starting treatment.</p>
+        <p>© 2026 Springs Rejuvenation | <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Refund Policy</a></p>
+    </div>
+</footer>
+
+<script>
+let selectedPlan='quarterly', basePrice=149;
+function selectPlan(el,plan,price){document.querySelectorAll('.plan-card').forEach(c=>c.classList.remove('selected'));el.classList.add('selected');selectedPlan=plan;basePrice=price;updateTotal()}
+function updateTotal(){let a=0;document.querySelectorAll('input[name="addon"]:checked').forEach(c=>{a+=parseInt(c.dataset.price)||0});const t=basePrice+a;document.getElementById('summary-plan').textContent=selectedPlan==='monthly'?'Monthly':selectedPlan==='quarterly'?'Quarterly':'6-Month';document.getElementById('summary-base').textContent='$'+basePrice+'.00';document.getElementById('btn-price').textContent='$'+t;document.getElementById('summary-total').textContent='$'+t+'.00';document.getElementById('summary-recurring').textContent='$'+t+'/month';const al=document.getElementById('addon-line');if(a>0){al.style.display='flex';document.getElementById('summary-addons').textContent='+$'+a+'.00'}else{al.style.display='none'}}
+document.querySelector('.plan-card.recommended')?.click();
+document.getElementById('card-number')?.addEventListener('input',function(e){let v=e.target.value.replace(/\D/g,'').substring(0,16);e.target.value=v.replace(/(\d{4})(?=\d)/g,'$1 ')});
+document.getElementById('card-expiry')?.addEventListener('input',function(e){let v=e.target.value.replace(/\D/g,'').substring(0,4);if(v.length>=2)v=v.substring(0,2)+'/'+v.substring(2);e.target.value=v});
+document.getElementById('payment-form')?.addEventListener('submit',function(e){e.preventDefault();alert('Payment submitted! Connect Stripe in production.')});
+</script>
+</body>
+</html>
