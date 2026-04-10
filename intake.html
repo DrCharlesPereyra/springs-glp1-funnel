@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started — Springs Rejuvenation Weight Loss Assessment</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="intake-body">
+
+<header class="header header-simple">
+    <div class="container header-inner">
+        <a href="index.html" class="logo"><span class="logo-text">SPRINGS<span class="logo-accent">REJUVENATION</span></span></a>
+        <div class="secure-badge">🔒 Secure & HIPAA Compliant</div>
+    </div>
+</header>
+
+<section class="intake-section">
+    <div class="container intake-container">
+        <div class="intake-header">
+            <h1>Reach your goal weight fast <span class="highlight">without restrictive diets and exercise.</span></h1>
+            <p>Please answer the following questions so we can qualify you for medical weight loss.</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-step active" data-step="1">
+                <div class="step-dot">1</div>
+                <span>Start</span>
+            </div>
+            <div class="progress-line"><div class="progress-fill" id="progress-fill-1"></div></div>
+            <div class="progress-step" data-step="2">
+                <div class="step-dot">2</div>
+                <span>Details</span>
+            </div>
+            <div class="progress-line"><div class="progress-fill" id="progress-fill-2"></div></div>
+            <div class="progress-step" data-step="3">
+                <div class="step-dot">3</div>
+                <span>Eligibility</span>
+            </div>
+        </div>
+
+        <form id="intake-form" class="intake-form">
+
+            <!-- ═══ STEP 1: Basic Info ═══ -->
+            <div class="form-step active" id="step-1">
+                <h2>What is your height and weight?</h2>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="feet">Height (Feet) *</label>
+                        <select id="feet" name="feet" required>
+                            <option value="">Select</option>
+                            <option value="4">4</option>
+                            <option value="5" selected>5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inches">Inches *</label>
+                        <select id="inches" name="inches" required>
+                            <option value="">Select</option>
+                            <option value="0">0</option><option value="1">1</option>
+                            <option value="2">2</option><option value="3">3</option>
+                            <option value="4">4</option><option value="5">5</option>
+                            <option value="6">6</option><option value="7">7</option>
+                            <option value="8">8</option><option value="9">9</option>
+                            <option value="10">10</option><option value="11">11</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="weight">Weight (lbs) *</label>
+                        <input type="number" id="weight" name="weight" placeholder="e.g., 200" min="80" max="500" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="goal-weight">Goal weight (lbs) *</label>
+                        <input type="number" id="goal-weight" name="goal_weight" placeholder="e.g., 160" min="80" max="400" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Are you male or female? *</label>
+                    <div class="radio-group">
+                        <label class="radio-option"><input type="radio" name="sex" value="male" required> Male</label>
+                        <label class="radio-option"><input type="radio" name="sex" value="female"> Female</label>
+                    </div>
+                </div>
+
+                <h3>What is your date of birth?</h3>
+                <div class="form-row form-row-3">
+                    <div class="form-group">
+                        <label for="dob-month">Month *</label>
+                        <select id="dob-month" name="dob_month" required>
+                            <option value="">Month</option>
+                            <option value="1">January</option><option value="2">February</option>
+                            <option value="3">March</option><option value="4">April</option>
+                            <option value="5">May</option><option value="6">June</option>
+                            <option value="7">July</option><option value="8">August</option>
+                            <option value="9">September</option><option value="10">October</option>
+                            <option value="11">November</option><option value="12">December</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob-day">Day *</label>
+                        <select id="dob-day" name="dob_day" required>
+                            <option value="">Day</option>
+                            <script>for(let i=1;i<=31;i++) document.write(`<option value="${i}">${i}</option>`)</script>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob-year">Year *</label>
+                        <select id="dob-year" name="dob_year" required>
+                            <option value="">Year</option>
+                            <script>for(let i=2008;i>=1930;i--) document.write(`<option value="${i}">${i}</option>`)</script>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-primary btn-lg" onclick="nextStep(1)">CONTINUE →</button>
+                </div>
+            </div>
+
+            <!-- ═══ STEP 2: Medical Details ═══ -->
+            <div class="form-step" id="step-2">
+                <h2>Medical History</h2>
+                <p class="form-note">This information helps our doctors determine the safest and most effective treatment for you.</p>
+
+                <div class="form-group">
+                    <label for="medications">Current medications (list all)</label>
+                    <textarea id="medications" name="medications" rows="3" placeholder="e.g., Metformin 500mg, Lisinopril 10mg..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="allergies">Drug allergies</label>
+                    <textarea id="allergies" name="allergies" rows="2" placeholder="e.g., Penicillin, Sulfa drugs..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Do you have any of the following conditions? (check all that apply)</label>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-option"><input type="checkbox" name="conditions" value="type2_diabetes"> Type 2 Diabetes</label>
+                        <label class="checkbox-option"><input type="checkbox" name="conditions" value="type1_diabetes"> Type 1 Diabetes</label>
+                        <label class="checkbox-option"><input type="checkbox" name="conditions" value="thyroid"> Thyroid disease</label>
+                        <label class="checkbox-option"><input type="checkbox" name="conditions" value="heart"> Heart disease</label>
+                        <label class="checkbox-option"><input type="checkbox" name="conditions" value="kidney"> Kidney disease</label>
+                        <label class="checkbox-option"><input type="checkbox" name="conditions" value="pancreatitis"> History of pancreatitis</label>
+                        <label class="checkbox-option"><input type="checkbox" name="conditions" value="men2"> MEN2 or medullary thyroid cancer</label>
+                        <label class="checkbox-option"><input type="checkbox" name="conditions" value="gallbladder"> Gallbladder issues</label>
+                        <label class="checkbox-option"><input type="checkbox" name="conditions" value="eating_disorder"> Eating disorder history</label>
+                        <label class="checkbox-option"><input type="checkbox" name="conditions" value="pregnant"> Pregnant or breastfeeding</label>
+                        <label class="checkbox-option"><input type="checkbox" name="conditions" value="hypertension"> High blood pressure</label>
+                        <label class="checkbox-option"><input type="checkbox" name="conditions" value="high_cholesterol"> High cholesterol</label>
+                        <label class="checkbox-option"><input type="checkbox" name="conditions" value="none"> None of the above</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Have you tried to lose weight before?</label>
+                    <div class="radio-group">
+                        <label class="radio-option"><input type="radio" name="prev_weight_loss" value="yes"> Yes</label>
+                        <label class="radio-option"><input type="radio" name="prev_weight_loss" value="no"> No</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Have you used GLP-1 medications before?</label>
+                    <div class="radio-group">
+                        <label class="radio-option"><input type="radio" name="prev_glp1" value="yes"> Yes</label>
+                        <label class="radio-option"><input type="radio" name="prev_glp1" value="no"> No</label>
+                    </div>
+                </div>
+
+                <div class="form-group" id="prev-glp1-detail" style="display:none;">
+                    <label for="prev-glp1-which">Which GLP-1 medication did you use?</label>
+                    <input type="text" id="prev-glp1-which" name="prev_glp1_which" placeholder="e.g., Ozempic, Wegovy, Mounjaro...">
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" onclick="prevStep(2)">← BACK</button>
+                    <button type="button" class="btn btn-primary btn-lg" onclick="nextStep(2)">CONTINUE →</button>
+                </div>
+            </div>
+
+            <!-- ═══ STEP 3: Eligibility Result ═══ -->
+            <div class="form-step" id="step-3">
+                <div class="eligibility-result" id="eligibility-result">
+                    <div class="result-icon">✅</div>
+                    <h2>Great news — you may be eligible!</h2>
+                    <p class="result-sub">Based on your responses, you appear to be a good candidate for our GLP-1 weight loss program.</p>
+
+                    <div class="bmi-card">
+                        <div class="bmi-row">
+                            <span class="bmi-label">Your BMI:</span>
+                            <span class="bmi-value" id="bmi-value">—</span>
+                        </div>
+                        <div class="bmi-row">
+                            <span class="bmi-label">Current weight:</span>
+                            <span class="bmi-value" id="summary-weight">—</span>
+                        </div>
+                        <div class="bmi-row">
+                            <span class="bmi-label">Goal weight:</span>
+                            <span class="bmi-value" id="summary-goal">—</span>
+                        </div>
+                        <div class="bmi-row highlight-row">
+                            <span class="bmi-label">Projected loss:</span>
+                            <span class="bmi-value" id="summary-loss">—</span>
+                        </div>
+                    </div>
+
+                    <h3>Recommended for you:</h3>
+                    <div class="recommended-plan">
+                        <!-- EDIT: Adjust recommended plan -->
+                        <div class="plan-rec-card">
+                            <h4>GLP-1 Injection Program</h4>
+                            <p class="plan-rec-price">$179/month</p>
+                            <ul>
+                                <li>✓ Compounded semaglutide</li>
+                                <li>✓ Doctor consultation included</li>
+                                <li>✓ Free priority shipping</li>
+                                <li>✓ 24/7 care team support</li>
+                                <li>✓ Cancel anytime</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <a href="checkout.html" class="btn btn-primary btn-lg">CONTINUE TO CHECKOUT →</a>
+                        <p class="secure-note">🔒 Your information is secure and protected by HIPAA</p>
+                    </div>
+                </div>
+
+                <!-- DQ Result (hidden by default) -->
+                <div class="eligibility-dq" id="eligibility-dq" style="display:none;">
+                    <div class="result-icon">ℹ️</div>
+                    <h2>We may have other options for you</h2>
+                    <p>Based on your responses, GLP-1 therapy may not be the best fit right now. However, Springs Rejuvenation offers other treatments that may help you reach your goals.</p>
+                    <div class="form-actions">
+                        <a href="index.html#products" class="btn btn-primary">EXPLORE OTHER TREATMENTS</a>
+                        <!-- EDIT: Link to Springs main site or peptide page -->
+                        <a href="#" class="btn btn-outline">SPEAK WITH A SPECIALIST</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<footer class="footer footer-simple">
+    <div class="container">
+        <p>© 2026 Springs Rejuvenation. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// Intake-specific JS
+document.querySelectorAll('input[name="prev_glp1"]').forEach(r => {
+    r.addEventListener('change', () => {
+        document.getElementById('prev-glp1-detail').style.display = r.value === 'yes' ? 'block' : 'none';
+    });
+});
+
+function nextStep(current) {
+    // Validate current step
+    const step = document.getElementById('step-' + current);
+    const required = step.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(f => {
+        if (!f.value) { f.classList.add('error'); valid = false; }
+        else { f.classList.remove('error'); }
+    });
+    // Radio validation
+    if (current === 1) {
+        const sex = document.querySelector('input[name="sex"]:checked');
+        if (!sex) { valid = false; alert('Please select male or female.'); }
+    }
+    if (!valid) return;
+
+    // Calculate BMI on step 2 → 3
+    if (current === 2) {
+        const feet = parseInt(document.getElementById('feet').value) || 5;
+        const inches = parseInt(document.getElementById('inches').value) || 6;
+        const weight = parseFloat(document.getElementById('weight').value) || 180;
+        const goalWeight = parseFloat(document.getElementById('goal-weight').value) || 150;
+        const heightIn = feet * 12 + inches;
+        const bmi = (weight / (heightIn * heightIn)) * 703;
+
+        document.getElementById('bmi-value').textContent = bmi.toFixed(1);
+        document.getElementById('summary-weight').textContent = weight + ' lbs';
+        document.getElementById('summary-goal').textContent = goalWeight + ' lbs';
+        document.getElementById('summary-loss').textContent = Math.round(weight * 0.18) + ' lbs projected';
+
+        // Check DQ conditions
+        const conditions = Array.from(document.querySelectorAll('input[name="conditions"]:checked')).map(c => c.value);
+        const isDQ = conditions.includes('type1_diabetes') || conditions.includes('men2') || conditions.includes('pregnant');
+
+        if (isDQ || bmi < 25) {
+            document.getElementById('eligibility-result').style.display = 'none';
+            document.getElementById('eligibility-dq').style.display = 'block';
+        } else {
+            document.getElementById('eligibility-result').style.display = 'block';
+            document.getElementById('eligibility-dq').style.display = 'none';
+        }
+    }
+
+    // Transition
+    document.getElementById('step-' + current).classList.remove('active');
+    document.getElementById('step-' + (current + 1)).classList.add('active');
+
+    // Update progress bar
+    document.querySelectorAll('.progress-step').forEach((s, i) => {
+        if (i < current) s.classList.add('completed');
+        if (i === current) s.classList.add('active');
+    });
+    if (document.getElementById('progress-fill-' + current))
+        document.getElementById('progress-fill-' + current).style.width = '100%';
+
+    window.scrollTo(0, 0);
+}
+
+function prevStep(current) {
+    document.getElementById('step-' + current).classList.remove('active');
+    document.getElementById('step-' + (current - 1)).classList.add('active');
+    document.querySelectorAll('.progress-step')[current - 1].classList.remove('active');
+    if (document.getElementById('progress-fill-' + (current - 1)))
+        document.getElementById('progress-fill-' + (current - 1)).style.width = '0%';
+    window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
